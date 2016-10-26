@@ -1,6 +1,6 @@
-class DeviseCreateUsuarios < ActiveRecord::Migration
+class DeviseCreateUsers < ActiveRecord::Migration
   def change
-    create_table(:usuarios) do |t|
+    create_table :users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -29,18 +29,22 @@ class DeviseCreateUsuarios < ActiveRecord::Migration
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-      #Información Extra
-      t.sting :username
-      t.sting :name
-      t.sting :last_name
+
+      t.string :username, null: false, default:""
+      t.string :name
+      t.string :last_name
+      t.text :bio
+      #Redes sociales
+      t.string :uid
+      t.string :provider
 
 
-      t.timestamps
+      t.timestamps null: false
     end
 
-    add_index :usuarios, :email,                unique: true
-    add_index :usuarios, :reset_password_token, unique: true
-    # add_index :usuarios, :confirmation_token,   unique: true
-    # add_index :usuarios, :unlock_token,         unique: true
+    add_index :users, :email,                unique: true
+    add_index :users, :reset_password_token, unique: true
+    # add_index :users, :confirmation_token,   unique: true
+    # add_index :users, :unlock_token,         unique: true
   end
 end
